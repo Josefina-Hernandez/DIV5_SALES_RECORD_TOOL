@@ -46,13 +46,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         judge=False
         for each in wb.sheetnames:
-            if f'{self.comboBox.currentText()} Div5 Quotation Record' in each:
+            if 'quotation record' in each.lower():
                 judge=True
                 break
         if not judge:
-            self.label.setText(f'対象のデータシート "{self.comboBox.currentText()} Quotation Record" が見つかりません!')
-            self.textEdit.append(f'対象のデータシート f"{self.comboBox.currentText()} Quotation Record" が見つかりません!')
-            QMessageBox.critical(self, 'フォマードエラー', f'対象のデータシート "{self.comboBox.currentText()} Quotation Record" が見つかりません!')
+            self.label.setText('対象のデータシート "****** Quotation Record" が見つかりません!')
+            self.textEdit.append('対象のデータシート "****** Quotation Record" が見つかりません!')
+            QMessageBox.critical(self, 'フォーマットエラー', '対象のデータシート "****** Quotation Record" が見つかりません!')
             return
 
         wb.close()
@@ -154,7 +154,12 @@ class Working(QThread):
 
     def reading_excel(self, file_path):
         wb = xl.load_workbook(filename=file_path, data_only=True)  #updated on 7/20/2023 for v1.3, added "data_only=True"
-        ws = wb[f'{self.YEAR} Div5 Quotation Record']
+        #ws = wb[f'{self.YEAR} Div5 Quotation Record']
+
+        for each in wb.sheetnames:
+            if 'quotation record' in each.lower():
+                ws = wb[f'{each}']
+                break
 
         # Scanning for locating the first cell of the diagram
         self.update_msg.emit('')
