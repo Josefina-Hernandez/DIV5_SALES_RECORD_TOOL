@@ -130,9 +130,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def about(self):
         QMessageBox.information(self, 'ツール情報',
-                                'AKT DIV.5 見積管理ツール (V1.3-Beta版)\n'
+                                'AKT DIV.5 見積管理ツール (V1.4版)\n'
                                 '言語: 日本語\n'
-                                'バージョン: V1.3-Beta版\n\n'
+                                'バージョン: V1.4版\n\n'
                                 '開発者：An Lu\n'
                                 '開発時間：2023年3月29日\n\n'
                                 '連絡先: (+66)84-208-1862\n'
