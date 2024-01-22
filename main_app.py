@@ -130,9 +130,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def about(self):
         QMessageBox.information(self, 'ツール情報',
-                                'AKT DIV.5 見積管理ツール (V1.4版)\n'
+                                'AKT DIV.5 見積管理ツール (V1.5版)\n'
                                 '言語: 日本語\n'
-                                'バージョン: V1.4版\n\n'
+                                'バージョン: V1.5版\n\n'
                                 '開発者：An Lu\n'
                                 '開発時間：2023年3月29日\n\n'
                                 '連絡先: (+66)84-208-1862\n'
@@ -358,39 +358,55 @@ class Working(QThread):
             i += 1
 
         behind_row = i
-        ws.cell(row=behind_row, column=4).value = 'Total'
+        ws.cell(row=behind_row, column=4).value = 'AKJ Total'
         ws.cell(row=behind_row,
-                column=5).value = f'=SUBTOTAL(9,E{start_row}:E{behind_row - 1})'
+                column=5).value = f'=SUMIF($C${start_row}:$P${behind_row - 1},"AKJ",E{start_row}:E{behind_row - 1})'
         ws.cell(row=behind_row,
-                column=6).value = f'=SUBTOTAL(9,F{start_row}:F{behind_row - 1})'
+                column=6).value = f'=SUMIF($C${start_row}:$P${behind_row - 1},"AKJ",F{start_row}:F{behind_row - 1})'
         ws.cell(row=behind_row,
-                column=7).value = f'=SUBTOTAL(9,G{start_row}:G{behind_row - 1})'
+                column=7).value = f'=SUMIF($C${start_row}:$P${behind_row - 1},"AKJ",G{start_row}:G{behind_row - 1})'
         ws.cell(row=behind_row,
-                column=8).value = f'=SUBTOTAL(9,H{start_row}:H{behind_row - 1})'
+                column=8).value = f'=SUMIF($C${start_row}:$P${behind_row - 1},"AKJ",H{start_row}:H{behind_row - 1})'
         ws.cell(row=behind_row,
-                column=9).value = f'=SUBTOTAL(9,I{start_row}:I{behind_row - 1})'
+                column=9).value = f'=SUMIF($C${start_row}:$P${behind_row - 1},"AKJ",I{start_row}:I{behind_row - 1})'
         ws.cell(row=behind_row,
-                column=10).value = f'=SUBTOTAL(9,J{start_row}:J{behind_row - 1})'
+                column=10).value = f'=SUMIF($C${start_row}:$P${behind_row - 1},"AKJ",J{start_row}:J{behind_row - 1})'
         ws.cell(row=behind_row,
-                column=11).value = f'=SUBTOTAL(9,K{start_row}:K{behind_row - 1})'
+                column=11).value = f'=SUMIF($C${start_row}:$P${behind_row - 1},"AKJ",K{start_row}:K{behind_row - 1})'
         ws.cell(row=behind_row,
-                column=12).value = f'=SUBTOTAL(9,L{start_row}:L{behind_row - 1})'
+                column=12).value = f'=SUMIF($C${start_row}:$P${behind_row - 1},"AKJ",L{start_row}:L{behind_row - 1})'
         ws.cell(row=behind_row,
-                column=13).value = f'=SUBTOTAL(9,M{start_row}:M{behind_row - 1})'
+                column=13).value = f'=SUMIF($C${start_row}:$P${behind_row - 1},"AKJ",M{start_row}:M{behind_row - 1})'
         ws.cell(row=behind_row,
-                column=14).value = f'=SUBTOTAL(9,N{start_row}:N{behind_row - 1})'
+                column=14).value = f'=SUMIF($C${start_row}:$P${behind_row - 1},"AKJ",N{start_row}:N{behind_row - 1})'
         ws.cell(row=behind_row,
-                column=15).value = f'=SUBTOTAL(9,O{start_row}:O{behind_row - 1})'
+                column=15).value = f'=SUMIF($C${start_row}:$P${behind_row - 1},"AKJ",O{start_row}:O{behind_row - 1})'
         ws.cell(row=behind_row,
-                column=16).value = f'=SUBTOTAL(9,P{start_row}:P{behind_row - 1})'
+                column=16).value = f'=SUMIF($C${start_row}:$P${behind_row - 1},"AKJ",P{start_row}:P{behind_row - 1})'
         ws.cell(row=behind_row, column=17).value = f'=SUM(E{behind_row}:P{behind_row})'
 
         behind_row += 1
+        ws.cell(row=behind_row, column=4).value = 'CB Total'
+        ws.cell(row=behind_row, column=5).value = f'=SUM(E{start_row}:E{behind_row - 2})-E{behind_row - 1}'
+        ws.cell(row=behind_row, column=6).value = f'=SUM(F{start_row}:F{behind_row - 2})-F{behind_row - 1}'
+        ws.cell(row=behind_row, column=7).value = f'=SUM(G{start_row}:G{behind_row - 2})-G{behind_row - 1}'
+        ws.cell(row=behind_row, column=8).value = f'=SUM(H{start_row}:H{behind_row - 2})-H{behind_row - 1}'
+        ws.cell(row=behind_row, column=9).value = f'=SUM(I{start_row}:I{behind_row - 2})-I{behind_row - 1}'
+        ws.cell(row=behind_row, column=10).value = f'=SUM(J{start_row}:J{behind_row - 2})-J{behind_row - 1}'
+        ws.cell(row=behind_row, column=11).value = f'=SUM(K{start_row}:K{behind_row - 2})-K{behind_row - 1}'
+        ws.cell(row=behind_row, column=12).value = f'=SUM(L{start_row}:L{behind_row - 2})-L{behind_row - 1}'
+        ws.cell(row=behind_row, column=13).value = f'=SUM(M{start_row}:M{behind_row - 2})-M{behind_row - 1}'
+        ws.cell(row=behind_row, column=14).value = f'=SUM(N{start_row}:N{behind_row - 2})-N{behind_row - 1}'
+        ws.cell(row=behind_row, column=15).value = f'=SUM(O{start_row}:O{behind_row - 2})-O{behind_row - 1}'
+        ws.cell(row=behind_row, column=16).value = f'=SUM(P{start_row}:P{behind_row - 2})-P{behind_row - 1}'
+        ws.cell(row=behind_row, column=17).value = f'=SUBTOTAL(9,E{behind_row}:P{behind_row})'
+
+        behind_row += 1
         ws.cell(row=behind_row, column=4).value = 'Quarter Total'
-        ws.cell(row=behind_row, column=7).value = f'=E{behind_row - 1}+F{behind_row - 1}+G{behind_row - 1}'
-        ws.cell(row=behind_row, column=10).value = f'=H{behind_row - 1}+I{behind_row - 1}+J{behind_row - 1}'
-        ws.cell(row=behind_row, column=13).value = f'=K{behind_row - 1}+L{behind_row - 1}+M{behind_row - 1}'
-        ws.cell(row=behind_row, column=16).value = f'=N{behind_row - 1}+O{behind_row - 1}+P{behind_row - 1}'
+        ws.cell(row=behind_row, column=7).value = f'=SUM(E{behind_row - 2}:G{behind_row - 1})'
+        ws.cell(row=behind_row, column=10).value = f'=SUM(H{behind_row - 2}:J{behind_row - 1})'
+        ws.cell(row=behind_row, column=13).value = f'=SUM(K{behind_row - 2}:M{behind_row - 1})'
+        ws.cell(row=behind_row, column=16).value = f'=SUM(N{behind_row - 2}:P{behind_row - 1})'
 
         behind_row += 1
 
@@ -404,36 +420,36 @@ class Working(QThread):
 
         elif mode == 'a':
             ws.cell(row=behind_row, column=4).value = 'Quarter  Achievement ratio'
-            ws.cell(row=behind_row, column=7).value = f'=(G{behind_row - 1}*0.8+$E$15)/$E$16'
-            ws.cell(row=behind_row, column=10).value = f'=(J{behind_row - 1}*0.8+$H$15)/$H$16'
-            ws.cell(row=behind_row, column=13).value = f'=(M{behind_row - 1}*0.8+$K$15)/$K$16'
-            ws.cell(row=behind_row, column=16).value = f'=(P{behind_row - 1}*0.8+$N$15)/$N$16'
+            ws.cell(row=behind_row, column=7).value = f'=G{behind_row - 1}/(E17+E10)'
+            ws.cell(row=behind_row, column=10).value = f'=J{behind_row - 1}/(H17+H10)'
+            ws.cell(row=behind_row, column=13).value = f'=M{behind_row - 1}/(K17+K10)'
+            ws.cell(row=behind_row, column=16).value = f'=P{behind_row - 1}/(N17+N10)'
 
-            ws.cell(row=behind_row, column=17).value = f'=(Q{behind_row - 2}*0.8+$Q$15)/$Q$16'
+            ws.cell(row=behind_row, column=17).value = f'=(Q{behind_row - 3}*0.8+Q6+Q13)/(Q10+Q17)'
 
             REFER_ROW = behind_row - 1
 
         elif mode == 'b':
             ws.cell(row=behind_row, column=4).value = 'Quarter  Achievement ratio'
-            ws.cell(row=behind_row, column=7).value = f'=(G{behind_row - 1}*0.6+G{REFER_ROW}*0.8+$E$15)/$E$16'
-            ws.cell(row=behind_row, column=10).value = f'=(J{behind_row - 1}*0.6+J{REFER_ROW}*0.8+$H$15)/$H$16'
-            ws.cell(row=behind_row, column=13).value = f'=(M{behind_row - 1}*0.6+M{REFER_ROW}*0.8+$K$15)/$K$16'
-            ws.cell(row=behind_row, column=16).value = f'=(P{behind_row - 1}*0.6+P{REFER_ROW}*0.8+$N$15)/$N$16'
+            ws.cell(row=behind_row, column=7).value = f'=(G{behind_row - 1}*0.6+G{REFER_ROW}*0.8)/(E17+E10)'
+            ws.cell(row=behind_row, column=10).value = f'=(J{behind_row - 1}*0.6+J{REFER_ROW}*0.8)/(H17+H10)'
+            ws.cell(row=behind_row, column=13).value = f'=(M{behind_row - 1}*0.6+M{REFER_ROW}*0.8)/(K17+K10)'
+            ws.cell(row=behind_row, column=16).value = f'=(P{behind_row - 1}*0.6+P{REFER_ROW}*0.8)/(N17+N10)'
 
-            ws.cell(row=behind_row, column=17).value = f'=(Q{behind_row - 2}*0.6+Q{REFER_ROW-1}*0.8+$Q$15)/$Q$16'
+            ws.cell(row=behind_row, column=17).value = f'=(Q{REFER_ROW}*0.8+Q{behind_row - 1}*0.6+Q6+Q13)/(Q10+Q17)'
 
         else:
             ws.cell(row=behind_row, column=4).value = 'Quarter  Achievement ratio'
-            ws.cell(row=behind_row, column=7).value = f'=G{behind_row - 1}/$E$16'
-            ws.cell(row=behind_row, column=10).value = f'=J{behind_row - 1}/$H$16'
-            ws.cell(row=behind_row, column=13).value = f'=M{behind_row - 1}/$K$16'
-            ws.cell(row=behind_row, column=16).value = f'=P{behind_row - 1}/$N$16'
+            ws.cell(row=behind_row, column=7).value = f'=G{behind_row - 1}/(E17+E10)'
+            ws.cell(row=behind_row, column=10).value = f'=J{behind_row - 1}/(H17+H10)'
+            ws.cell(row=behind_row, column=13).value = f'=M{behind_row - 1}/(K17+K10)'
+            ws.cell(row=behind_row, column=16).value = f'=P{behind_row - 1}/(N17+N10)'
 
-        for i in range(behind_row - 2, behind_row + 1):
+        for i in range(behind_row - 3, behind_row + 1):
             for j in range(4, 18):
                 ws.cell(row=i, column=j).font = Font(name="Calibri", size=11, bold=True)
 
-        for i in range(behind_row - 2, behind_row):
+        for i in range(behind_row - 3, behind_row):
             for j in range(5, 18):
                 ws.cell(row=i, column=j).number_format = '_-* #,##0_-;-* #,##0_-;_-* "-"_-;_-@_-'
 
