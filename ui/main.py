@@ -224,12 +224,12 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "AKT DIV.5 見積管理ツール (V1.4版)"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "AKT DIV.5 見積管理ツール (V1.6版)"))
         self.pushButton.setText(_translate("MainWindow", "案件一覧表出力"))
         self.pushButton_2.setText(_translate("MainWindow", "閉じる"))
         self.label.setText(_translate("MainWindow", "Excelファイルをインポートしてください..."))
         self.pushButton_3.setText(_translate("MainWindow", "Excelインポート"))
-        self.label_2.setText(_translate("MainWindow", "AKT DIV.5 見積管理ツール (V1.4版)"))
+        self.label_2.setText(_translate("MainWindow", "AKT DIV.5 見積管理ツール (V1.6版)"))
         self.pushButton_4.setText(_translate("MainWindow", "アバウト"))
         self.label_3.setText(_translate("MainWindow", "年度"))
 

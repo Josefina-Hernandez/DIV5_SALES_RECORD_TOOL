@@ -130,9 +130,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def about(self):
         QMessageBox.information(self, 'ツール情報',
-                                'AKT DIV.5 見積管理ツール (V1.5版)\n'
+                                'AKT DIV.5 見積管理ツール (V1.6版)\n'
                                 '言語: 日本語\n'
-                                'バージョン: V1.5版\n\n'
+                                'バージョン: V1.6版\n\n'
                                 '開発者：An Lu\n'
                                 '開発時間：2023年3月29日\n\n'
                                 '連絡先: (+66)84-208-1862\n'
@@ -272,14 +272,14 @@ class Working(QThread):
         font = Font(name="Calibri", size=11, bold=True)
         ws.cell(row=start_row, column=6).font = font
 
-        ws.cell(row=start_row, column=17).value = 'Unit/THB'
+        ws.cell(row=start_row, column=18).value = 'Unit/THB'
         font = Font(name="Calibri", size=11, bold=False)
-        ws.cell(row=start_row, column=17).font = font
-        ws.cell(row=start_row, column=17).alignment = Alignment(horizontal='right', vertical='center')
+        ws.cell(row=start_row, column=18).font = font
+        ws.cell(row=start_row, column=18).alignment = Alignment(horizontal='right', vertical='center')
         # start_row=3
 
         start_row += 1
-        for j in range(2, 18):
+        for j in range(2, 19):
             if j == 2:
                 ws.cell(row=start_row, column=j).font = Font(name="Calibri", size=8, bold=True)
                 ws.cell(row=start_row, column=j).value = 'Success rate'
@@ -298,6 +298,9 @@ class Working(QThread):
                                                              right=Side(border_style='thin', color='000000'),
                                                              top=Side(border_style='thin', color='000000'),
                                                              bottom=Side(border_style='double', color='000000'))
+
+        ws.merge_cells(start_row=start_row, end_row=start_row, start_column=17, end_column=18)
+        ws.cell(row=start_row, column=17).alignment = Alignment(horizontal='right', vertical='center')
 
         for j in range(5, 17):
             ws.cell(row=start_row, column=j).number_format = '[$-en-US]mmm-yy;@'
@@ -345,7 +348,7 @@ class Working(QThread):
                     if pro_year == cal_year and pro_month == cal_month:
                         ws.cell(row=i, column=j).value = float(each[2])
 
-            for j in range(2, 18):
+            for j in range(2, 19):
                 if 5 <= j < 17:
                     ws.cell(row=i, column=j).fill = PatternFill("solid", fgColor="FFFF00")
                     ws.cell(row=i, column=j).number_format = '###,###'
@@ -354,7 +357,8 @@ class Working(QThread):
                 ws.cell(row=i, column=j).border = Border(left=Side(border_style='thin', color='000000'),
                                                          right=Side(border_style='thin', color='000000'),
                                                          bottom=Side(border_style='thin', color='000000'))
-
+            ws.merge_cells(start_row=i, end_row=i, start_column=17, end_column=18)
+            ws.cell(row=i, column=17).alignment = Alignment(horizontal='right', vertical='center')
             i += 1
 
         behind_row = i
@@ -385,6 +389,9 @@ class Working(QThread):
                 column=16).value = f'=SUMIF($C${start_row}:$P${behind_row - 1},"AKJ",P{start_row}:P{behind_row - 1})'
         ws.cell(row=behind_row, column=17).value = f'=SUM(E{behind_row}:P{behind_row})'
 
+        ws.merge_cells(start_row=behind_row, end_row=behind_row, start_column=17, end_column=18)
+        ws.cell(row=behind_row, column=17).alignment = Alignment(horizontal='right', vertical='center')
+
         behind_row += 1
         ws.cell(row=behind_row, column=4).value = 'CB Total'
         ws.cell(row=behind_row, column=5).value = f'=SUM(E{start_row}:E{behind_row - 2})-E{behind_row - 1}'
@@ -401,6 +408,9 @@ class Working(QThread):
         ws.cell(row=behind_row, column=16).value = f'=SUM(P{start_row}:P{behind_row - 2})-P{behind_row - 1}'
         ws.cell(row=behind_row, column=17).value = f'=SUBTOTAL(9,E{behind_row}:P{behind_row})'
 
+        ws.merge_cells(start_row=behind_row, end_row=behind_row, start_column=17, end_column=18)
+        ws.cell(row=behind_row, column=17).alignment = Alignment(horizontal='right', vertical='center')
+
         behind_row += 1
         ws.cell(row=behind_row, column=4).value = 'Quarter Total'
         ws.cell(row=behind_row, column=7).value = f'=SUM(E{behind_row - 2}:G{behind_row - 1})'
@@ -408,7 +418,13 @@ class Working(QThread):
         ws.cell(row=behind_row, column=13).value = f'=SUM(K{behind_row - 2}:M{behind_row - 1})'
         ws.cell(row=behind_row, column=16).value = f'=SUM(N{behind_row - 2}:P{behind_row - 1})'
 
+        ws.merge_cells(start_row=behind_row, end_row=behind_row, start_column=17, end_column=18)
+        ws.cell(row=behind_row, column=17).alignment = Alignment(horizontal='right', vertical='center')
+
         behind_row += 1
+
+        ws.merge_cells(start_row=behind_row, end_row=behind_row, start_column=17, end_column=18)
+        ws.cell(row=behind_row, column=17).alignment = Alignment(horizontal='right', vertical='center')
 
         global REFER_ROW
         if mode == 'reject' or mode == 'c':
@@ -420,30 +436,30 @@ class Working(QThread):
 
         elif mode == 'a':
             ws.cell(row=behind_row, column=4).value = 'Quarter  Achievement ratio'
-            ws.cell(row=behind_row, column=7).value = f'=G{behind_row - 1}/(E17+E10)'
-            ws.cell(row=behind_row, column=10).value = f'=J{behind_row - 1}/(H17+H10)'
-            ws.cell(row=behind_row, column=13).value = f'=M{behind_row - 1}/(K17+K10)'
-            ws.cell(row=behind_row, column=16).value = f'=P{behind_row - 1}/(N17+N10)'
+            ws.cell(row=behind_row, column=7).value = f'=G{behind_row - 1}/($E$19+$E$12)'
+            ws.cell(row=behind_row, column=10).value = f'=J{behind_row - 1}/($H$19+$H$12)'
+            ws.cell(row=behind_row, column=13).value = f'=M{behind_row - 1}/($K$19+$K$12)'
+            ws.cell(row=behind_row, column=16).value = f'=P{behind_row - 1}/($N$19+$N$12)'
 
-            ws.cell(row=behind_row, column=17).value = f'=(Q{behind_row - 3}*0.8+Q6+Q13)/(Q10+Q17)'
+            ws.cell(row=behind_row, column=17).value = f'=(Q{behind_row - 3}*0.8+$R$6+$R$15)/($R$12+$R$19)'
 
             REFER_ROW = behind_row - 1
 
         elif mode == 'b':
             ws.cell(row=behind_row, column=4).value = 'Quarter  Achievement ratio'
-            ws.cell(row=behind_row, column=7).value = f'=(G{behind_row - 1}*0.6+G{REFER_ROW}*0.8)/(E17+E10)'
-            ws.cell(row=behind_row, column=10).value = f'=(J{behind_row - 1}*0.6+J{REFER_ROW}*0.8)/(H17+H10)'
-            ws.cell(row=behind_row, column=13).value = f'=(M{behind_row - 1}*0.6+M{REFER_ROW}*0.8)/(K17+K10)'
-            ws.cell(row=behind_row, column=16).value = f'=(P{behind_row - 1}*0.6+P{REFER_ROW}*0.8)/(N17+N10)'
+            ws.cell(row=behind_row, column=7).value = f'=(G{behind_row - 1}*0.6+G{REFER_ROW}*0.8)/($E$19+$E$12)'
+            ws.cell(row=behind_row, column=10).value = f'=(J{behind_row - 1}*0.6+J{REFER_ROW}*0.8)/($H$19+$H$12)'
+            ws.cell(row=behind_row, column=13).value = f'=(M{behind_row - 1}*0.6+M{REFER_ROW}*0.8)/($K$19+$K$12)'
+            ws.cell(row=behind_row, column=16).value = f'=(P{behind_row - 1}*0.6+P{REFER_ROW}*0.8)/($N$19+$N$12)'
 
-            ws.cell(row=behind_row, column=17).value = f'=(Q{REFER_ROW}*0.8+Q{behind_row - 1}*0.6+Q6+Q13)/(Q10+Q17)'
+            ws.cell(row=behind_row, column=17).value = f'=(Q{REFER_ROW}*0.8+Q{behind_row - 1}*0.6+$R$6+$R$15)/($R$12+$R$19)'
 
         else:
             ws.cell(row=behind_row, column=4).value = 'Quarter  Achievement ratio'
-            ws.cell(row=behind_row, column=7).value = f'=G{behind_row - 1}/(E17+E10)'
-            ws.cell(row=behind_row, column=10).value = f'=J{behind_row - 1}/(H17+H10)'
-            ws.cell(row=behind_row, column=13).value = f'=M{behind_row - 1}/(K17+K10)'
-            ws.cell(row=behind_row, column=16).value = f'=P{behind_row - 1}/(N17+N10)'
+            ws.cell(row=behind_row, column=7).value = f'=G{behind_row - 1}/($E$19+$E$12)'
+            ws.cell(row=behind_row, column=10).value = f'=J{behind_row - 1}/($H$19+$H$12)'
+            ws.cell(row=behind_row, column=13).value = f'=M{behind_row - 1}/($K$19+$K$12)'
+            ws.cell(row=behind_row, column=16).value = f'=P{behind_row - 1}/($N$19+$N$12)'
 
         for i in range(behind_row - 3, behind_row + 1):
             for j in range(4, 18):
@@ -488,6 +504,7 @@ class Working(QThread):
         ws.column_dimensions['O'].width = 9.78 + 0.78
         ws.column_dimensions['P'].width = 9.78 + 0.78
         ws.column_dimensions['Q'].width = 15.11 + 0.78
+        ws.column_dimensions['R'].width = 15.11 + 0.78
 
         # Create the first diagram
         ws.cell(row=1, column=2).value = '2：Opportunities Detail 案件一覧'
