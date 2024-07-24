@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# V1.7 version updated on 24/7/2024 by upgrading openpyxl to be the latest version
 
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QMessageBox, QFileDialog
 from PyQt5.QtCore import QThread, pyqtSignal
@@ -130,9 +131,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def about(self):
         QMessageBox.information(self, 'ツール情報',
-                                'AKT DIV.5 見積管理ツール (V1.6版)\n'
+                                'AKT DIV.5 見積管理ツール (V1.7版)\n'
                                 '言語: 日本語\n'
-                                'バージョン: V1.6版\n\n'
+                                'バージョン: V1.7版\n\n'
                                 '開発者：An Lu\n'
                                 '開発時間：2023年3月29日\n\n'
                                 '連絡先: (+66)84-208-1862\n'
